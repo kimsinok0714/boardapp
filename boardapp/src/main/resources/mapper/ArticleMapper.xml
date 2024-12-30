@@ -73,7 +73,7 @@
           FROM article
         
           <if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
-            <trim prefix="WHERE" prefixOverrides="AND">
+            <trim prefix="WHERE" >
             <choose>
                 <when test="keyfield == 'writer'">
                     writer LIKE CONCAT('%', #{keyword}, '%')
