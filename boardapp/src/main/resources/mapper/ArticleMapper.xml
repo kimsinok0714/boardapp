@@ -58,7 +58,7 @@
     </update>
 
   
-
+   <!-- 동적 SQL -->
     <select id="findArticleList" parameterType="com.example.boardapp.util.Criteria" resultType="ArticleDto">
 
          SELECT 
@@ -69,7 +69,7 @@
             reg_date as regDate
           FROM article
         
-          <if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
+          <if test="(keyfield != null and keyfield != '') and (keyword != null and keyword != '')">
             <trim prefix="WHERE" >
             <choose>
                 <when test="keyfield == 'writer'">
@@ -79,7 +79,7 @@
                     contents LIKE CONCAT('%', #{keyword}, '%')
                 </when>
                 <when test="keyfield == 'title'">
-                    title LIKE CONCAT('%', #{keyword}, '%')
+                    title LIKE CONCAT('%', #{keyword}, '%')  
                 </when>            
             </choose>
             </trim>
