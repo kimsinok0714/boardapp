@@ -3,7 +3,8 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-
+  <!--  이 매퍼 XML 파일에서는 SQL 쿼리와 자바 객체 간의 매핑을 정의하며, namespace는 매퍼 파일을 고유하게 식별하는 이름 공간을 지정합니다. -->
+  <!-- ArticleMapper 클래스에서는 SQL 쿼리를 메서드로 정의하고, XML 파일 내의 SQL 쿼리와 매핑됩니다. -->
   <mapper namespace="com.example.boardapp.mapper.ArticleMapper">
   
 
