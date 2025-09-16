@@ -22,17 +22,15 @@
 
   
   
-    <insert id="insertArticle" parameterType="ArticleDto">
+    <insert id="insertArticle" parameterType="ArticleDto">      
 
-      <selectKey resultType="int" keyProperty="id" order="AFTER">
+       INSERT INTO article (title, contents, writer, reg_date)
+       VALUES (#{title}, #{contents}, #{writer}, #{regDate})
 
+       <selectKey resultType="int" keyProperty="id" order="AFTER"> <!-- insert 구문 이후에 수행된다. -->
           SELECT MAX(id) AS id
-          FROM article
-
-      </selectKey>
-
-        INSERT INTO article (title, contents, writer, reg_date)
-        VALUES (#{title}, #{contents}, #{writer}, #{regDate})
+          FROM article                                  <!-- SELECT LAST_INSERT_ID() -->
+       </selectKey>
           
     </insert>
 
@@ -46,8 +44,7 @@
             writer,
             reg_date as regDate
         FROM article
-        WHERE id = #{id}
-        
+        WHERE id = #{id}        
           
     </select>
 
@@ -56,7 +53,7 @@
     
       UPDATE article
       SET title = #{title}, contents = #{contents}, writer = #{writer}
-      WHERE id = #{id}
+      WHERE id = #{id}   <!-- 파라미터 바인딩 : WHERE id = ? -->
     
     </update>
 
