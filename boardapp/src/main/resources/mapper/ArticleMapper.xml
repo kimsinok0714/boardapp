@@ -6,7 +6,7 @@
 
   <mapper namespace="com.example.boardapp.mapper.ArticleMapper">
   
- 
+
     <select id="selectArticleList" resultType="ArticleDto">
 
         SELECT 
