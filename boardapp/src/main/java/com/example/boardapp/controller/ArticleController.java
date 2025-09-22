@@ -35,7 +35,7 @@ public class ArticleController {
     
     @PostMapping("/articles")
     public ResponseEntity<ArticleDto> postArticle(@RequestBody ArticleDto articleDto) {
-
+        
             LocalDateTime now = LocalDateTime.now();
             articleDto.setRegDate(now);
 
