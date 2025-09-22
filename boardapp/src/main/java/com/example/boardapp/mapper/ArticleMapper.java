@@ -1,13 +1,9 @@
 package com.example.boardapp.mapper;
 
 import java.util.List;
-
 import org.apache.ibatis.annotations.Mapper;
-
 import com.example.boardapp.domain.ArticleDto;
 import com.example.boardapp.util.Criteria;
-
-
 
 
 /*
@@ -23,11 +19,11 @@ import com.example.boardapp.util.Criteria;
 - 다른 클래스에서 @Autowired로 주입받아 사용할 수 있습니다
 3. SQL 매핑
 - XML 매퍼 파일 또는 어노테이션을 통해 SQL문과 메서드를 매핑합니다
+- 메소드를 호출하면 SQL문이 실행된다.
 */
 @Mapper
 public interface ArticleMapper {
-
-
+    
     List<ArticleDto> selectArticleList();
     // @Insert("INSERT INTO article (title, contents, writer) VALUES (#{title}, #{contents}, #{writer)")
     void insertArticle(ArticleDto article);
