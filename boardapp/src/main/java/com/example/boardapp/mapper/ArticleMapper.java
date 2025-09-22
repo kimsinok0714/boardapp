@@ -29,9 +29,9 @@ public interface ArticleMapper {
 
 
     List<ArticleDto> selectArticleList();
-
+    // @Insert("INSERT INTO articles (title, content) VALUES (#{title}, #{content})")
     void insertArticle(ArticleDto article);
-
+    // @Select("SELECT * FROM articles WHERE id = #{id}")
     ArticleDto selectArticleById(int id);
 
     void updateArticle(ArticleDto articleDto);
