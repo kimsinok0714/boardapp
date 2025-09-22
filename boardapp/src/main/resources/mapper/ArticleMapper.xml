@@ -30,7 +30,7 @@
 
        <selectKey resultType="int" keyProperty="id" order="AFTER"> <!-- insert 구문 이후에 수행된다. -->
           SELECT MAX(id) AS id
-          FROM article                                  <!-- SELECT LAST_INSERT_ID() -->
+          FROM article                                 
        </selectKey>
           
     </insert>
