@@ -11,8 +11,7 @@ import lombok.Setter;
 
 
 
-@Getter 
-@Setter
+@Getter @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class ArticleDto {
