@@ -33,5 +33,8 @@ public interface ArticleMapper {
     void updateArticle(ArticleDto articleDto);
 
     List<ArticleDto> findArticleList(Criteria criteria);
+   
+    //게시글 검색 (Map 사용)
+    //List<ArticleDto> findArticleList(Map<String, Object> searchParams);
 
 }
