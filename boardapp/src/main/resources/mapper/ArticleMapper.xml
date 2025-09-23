@@ -81,18 +81,18 @@
             reg_date AS regDate
         FROM article
         <where>
-            <if test="searchType != null and searchType != '' and keyword != null and keyword != ''">
+            <if test="keyfield != null and keyfield != '' and keyword != null and keyword != ''">
                 <choose>
-                    <when test="searchType == 'title'">
+                    <when test="keyfield == 'title'">
                         AND title LIKE CONCAT('%', #{keyword}, '%')
                     </when>
-                    <when test="searchType == 'contents'">
+                    <when test="keyfield == 'contents'">
                         AND contents LIKE CONCAT('%', #{keyword}, '%')
                     </when>
-                    <when test="searchType == 'writer'">
+                    <when test="keyfield == 'writer'">
                         AND writer LIKE CONCAT('%', #{keyword}, '%')
                     </when>
-                    <when test="searchType == 'all'">
+                    <when test="keyfield == 'all'">
                         AND (title LIKE CONCAT('%', #{keyword}, '%') 
                              OR contents LIKE CONCAT('%', #{keyword}, '%') 
                              OR writer LIKE CONCAT('%', #{keyword}, '%'))
@@ -101,9 +101,9 @@
             </if>
         </where>
         ORDER BY id DESC
-        <if test="pageSize != null and offset != null">
+        <!-- <if test="pageSize != null and offset != null">
             LIMIT #{pageSize} OFFSET #{offset}
-        </if>
+        </if> -->
     </select>
 
 </mapper>
