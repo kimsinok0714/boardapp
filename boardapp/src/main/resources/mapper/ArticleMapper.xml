@@ -71,4 +71,39 @@
           ORDER BY id DESC
     </select>
 
+    <!-- 게시글 검색 (Map 파라미터 사용) -->
+    <select id="findArticleList" resultType="ArticleDto" parameterType="map">
+        SELECT
+            id,
+            title,
+            contents,
+            writer,
+            reg_date AS regDate
+        FROM article
+        <where>
+            <if test="searchType != null and searchType != '' and keyword != null and keyword != ''">
+                <choose>
+                    <when test="searchType == 'title'">
+                        AND title LIKE CONCAT('%', #{keyword}, '%')
+                    </when>
+                    <when test="searchType == 'contents'">
+                        AND contents LIKE CONCAT('%', #{keyword}, '%')
+                    </when>
+                    <when test="searchType == 'writer'">
+                        AND writer LIKE CONCAT('%', #{keyword}, '%')
+                    </when>
+                    <when test="searchType == 'all'">
+                        AND (title LIKE CONCAT('%', #{keyword}, '%') 
+                             OR contents LIKE CONCAT('%', #{keyword}, '%') 
+                             OR writer LIKE CONCAT('%', #{keyword}, '%'))
+                    </when>
+                </choose>
+            </if>
+        </where>
+        ORDER BY id DESC
+        <if test="pageSize != null and offset != null">
+            LIMIT #{pageSize} OFFSET #{offset}
+        </if>
+    </select>
+
 </mapper>
