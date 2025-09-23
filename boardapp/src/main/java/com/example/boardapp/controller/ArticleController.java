@@ -64,6 +64,7 @@ public class ArticleController {
 
     @GetMapping("/search")
     public ResponseEntity<List<ArticleDto>> search(
+            // value : 파리미터 이름 지정
             @RequestParam(required = false, defaultValue = "") String keyfield, 
             @RequestParam(required = false, defaultValue = "") String keyword) {
             articleService.searchArticleList(new Criteria(keyfield, keyword));
