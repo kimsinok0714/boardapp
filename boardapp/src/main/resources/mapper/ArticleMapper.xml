@@ -5,11 +5,9 @@
   
   <!--  이 매퍼 XML 파일에서는 SQL 쿼리와 자바 객체 간의 매핑을 정의하며, namespace는 매퍼 파일을 고유하게 식별하는 이름 공간을 지정합니다. -->
   <!-- ArticleMapper 클래스에서는 SQL 쿼리를 메서드로 정의하고, XML 파일 내의 SQL 쿼리와 매핑됩니다. -->
-  <mapper namespace="com.example.boardapp.mapper.ArticleMapper">
-  
+  <mapper namespace="com.example.boardapp.mapper.ArticleMapper">  
 
     <select id="selectArticleList" resultType="ArticleDto">
-
         SELECT 
           id, 
           title, 
@@ -17,27 +15,17 @@
           writer,
           reg_date as regDate
         FROM article
-        ORDER BY id DESC  
-        
+        ORDER BY id DESC          
     </select>
-
   
   
-    <insert id="insertArticle" parameterType="ArticleDto">      
-
+    <insert id="insertArticle" parameterType="ArticleDto" useGeneratedKeys="true" keyProperty="id">
        INSERT INTO article (title, contents, writer, reg_date)
-       VALUES (#{title}, #{contents}, #{writer}, #{regDate})
-
-       <selectKey resultType="int" keyProperty="id" order="AFTER"> <!-- insert 구문 이후에 수행된다. -->
-          SELECT MAX(id) AS id
-          FROM article                                 
-       </selectKey>
-          
+       VALUES (#{title}, #{contents}, #{writer}, #{regDate})          
     </insert>
 
 
     <select id="selectArticleById" parameterType="int" resultType="ArticleDto">
-
         SELECT 
             id, 
             title, 
@@ -45,31 +33,26 @@
             writer,
             reg_date as regDate
         FROM article
-        WHERE id = #{id}        
-          
+        WHERE id = #{id}                  
     </select>
 
 
-    <update id="updateArticle" parameterType="ArticleDto">
-    
+    <update id="updateArticle" parameterType="ArticleDto">    
       UPDATE article
       SET title = #{title}, contents = #{contents}, writer = #{writer}
-      WHERE id = #{id}   <!-- 파라미터 바인딩 : WHERE id = ? -->
-    
+      WHERE id = #{id}   <!-- 파라미터 바인딩 : WHERE id = ? -->    
     </update>
 
   
    <!-- 동적 SQL -->
     <select id="findArticleList" parameterType="com.example.boardapp.util.Criteria" resultType="ArticleDto">
-
          SELECT 
             id, 
             title, 
             contents, 
             writer,
             reg_date as regDate
-          FROM article
-        
+          FROM article        
           <if test="(keyfield != null and keyfield != '') and (keyword != null and keyword != '')">
             <trim prefix="WHERE" >
             <choose>
@@ -84,11 +67,8 @@
                 </when>            
             </choose>
             </trim>
-          </if>        
-
+          </if>       
           ORDER BY id DESC
-
     </select>
-
 
 </mapper>
